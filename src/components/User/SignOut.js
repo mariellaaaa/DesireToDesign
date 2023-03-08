@@ -17,7 +17,7 @@ export default function SignOut() {
     };
   return (
     <>
-        <div>
+        <div className='sign-out'>
             <div class="card border-danger mb-3">
                 <div class="card-header">Sign Out</div>
                 <div class="card-body text-danger">

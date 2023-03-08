@@ -1,0 +1,133 @@
+.home-image {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 115.8%;
+    position: absolute;
+}
+
+.top-left {
+    position: absolute;
+    top: 130px;
+    left: 300px;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.text {
+    position: absolute;
+    top: 200px;
+    left: 240px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+#card1, #card2, #card3, #card4  {
+    margin-top: 30px;
+}
+
+#card1 {
+    margin-left: 0%;
+}
+
+#card2 {
+    margin-left: 80px;
+}
+
+#card3 {
+    margin-left: 107px;
+}
+
+#card4 {
+    margin-left: 130px;
+}
+
+#famous-designers {
+    top: 40px;
+    width: 1278px;
+}
+
+.hr2 {
+    margin-top: 50px;
+}
+
+#price1 {
+    margin-left: 45px;
+    margin-top: 40px;
+}
+
+#price2 {
+    margin-left: 10px;
+    margin-top: 40px;
+}
+ 
+#price3 {
+    margin-left: 10px;
+    margin-top: 40px;
+}
+
+.btn-primary {
+    background-color: #5f1870 !important;    
+}
+
+.price {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.card-title {
+    font-weight: bolder;
+}
+
+#price-message {
+    top: 40px;
+    width: 1220px;
+    margin-left: 33px;
+    background-color: #5f1870;
+    color: aliceblue;
+}
+
+#carouselExampleControls {
+    margin-top: 150px;
+}
+
+div.text-div {
+    background-color: rgb(140, 141, 143);
+    position: absolute;
+    top: 2300px; right: 0; left: 0;
+    height: 500px;
+}
+
+#portfolio {
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    margin-top: 55px;
+    letter-spacing: 3px;
+}
+
+div.down-space {
+    background-color: rgb(63, 63, 63);
+    position: absolute;
+    bottom: -2700px; right: 0; left: 0;
+    height: 150px;
+    color: white;
+
+}
+
+.hr3 {
+    margin-top: 80px;
+}
+
+#learn-free {
+    margin-top: 450px;
+}
