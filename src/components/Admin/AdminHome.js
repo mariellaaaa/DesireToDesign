@@ -1,33 +1,35 @@
-
-import './Home.css';
-import img1 from '../../images/homePage.png';
-import img2 from '../../images/philippe_starck.jpg';
-import img3 from '../../images/Hadley_Albert.jpg';
-import img4 from '../../images/DavidHicks.jpg';
-import img5 from '../../images/BillyBaldwin.jpg';
-import img6 from '../../images/photo1.jpg';
-import img7 from '../../images/photo2.jpg';
-import img8 from '../../images/photo3.jpg';
-import img9 from '../../images/photo4.jpg';
-import img10 from '../../images/photo5.jpg';
-import img11 from '../../images/furniture.jpg';
-import img12 from '../../images/styles-colors.jpg';
-import img13 from '../../images/communication.jpg';
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect} from 'react';
+import '../Page/Home/Home.css';
+import img1 from '../images/homePage.png';
+import img2 from '../images/philippe_starck.jpg';
+import img3 from '../images/Hadley_Albert.jpg';
+import img4 from '../images/DavidHicks.jpg';
+import img5 from '../images/BillyBaldwin.jpg';
+import img6 from '../images/photo1.jpg';
+import img7 from '../images/photo2.jpg';
+import img8 from '../images/photo3.jpg';
+import img9 from '../images/photo4.jpg';
+import img10 from '../images/photo5.jpg';
+import img11 from '../images/furniture.jpg';
+import img12 from '../images/styles-colors.jpg';
+import img13 from '../images/communication.jpg';
 import { Link } from 'react-router-dom';
-import { db } from '../../../firebase';
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, serverTimestamp, updateDoc, getDoc } from "firebase/firestore";
+import { db } from '../../firebase';
+import './AdminHome.css';
 
 
-export default function Home(props) {
+
+export default function AdminHome(props) {
   const id1 = 'essential';
   const id2 = 'standard';
   const id3 = 'premium';
+  const [id, setId] = useState("");
+  const [text, setText] = useState("");
   const [databaseText1, setDatabaseText1] = useState([]);
   const [databaseText2, setDatabaseText2] = useState([]);
   const [databaseText3, setDatabaseText3] = useState([]);
   const [databaseText4, setDatabaseText4] = useState([]);
-  const id = ['Document_1', 'Document_2', 'Document_3', 'Document_4']
 
   useEffect(() => {
     const gettingData = async () => {
@@ -44,10 +46,36 @@ export default function Home(props) {
       const snapshot4 = await getDoc(docRef4);
       setDatabaseText4(snapshot4.data());
     }
-
     gettingData()
   }, []);
 
+  const handleChange = (event) => {
+    event.preventDefault();
+    setId(event.target.id)
+    if (id == "Document_1") {
+      setDatabaseText1(event.target.value);
+      setText(databaseText1);
+      console.log(text)
+    } else if (id == "Document_2") {
+      setDatabaseText2(event.target.value);
+      setText(databaseText2);
+    } else if (id == "Document_3") {
+      setDatabaseText3(event.target.value);
+      setText(databaseText3);
+    } else if (id == "Document_4") {
+      setDatabaseText4(event.target.value);
+      setText(databaseText4);
+    }
+  }
+
+  const saveChanges = async (event) => {
+    event.preventDefault();
+    const docRef = doc(db, "HomePage", id);
+    await updateDoc(docRef, {
+      text: text,
+      createdAt: serverTimestamp(),
+    });
+  }
 
   return (
     <div className='container'>
@@ -96,8 +124,17 @@ export default function Home(props) {
           <div class="card" id='card1' style={{width: "18rem"}}>
             <img src={img2} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <p class="card-text">{databaseText1.text}</p>
-              <Link to={{ pathname: "https://fr.wikipedia.org/wiki/Philippe_Starck"}}>See full information</Link>
+              <p class="card-text">
+                <textarea
+                  style={{width: "250px"}}
+                  rows='20'
+                  type='text'
+                  id='Document_1'
+                  value={databaseText1.text}
+                  onChange={event => handleChange(event)}
+                >{databaseText1.text}</textarea>
+              </p>
+              <button onClick={saveChanges}>Save changes</button>
             </div>
           </div>
         </div>
@@ -105,8 +142,17 @@ export default function Home(props) {
           <div class="card" id='card2' style={{width: "345px"}}>
             <img src={img3} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <p class="card-text">{databaseText2.text}</p>
-              <Link to={{ pathname: "https://en.wikipedia.org/wiki/Albert_Hadley"}}>See full information</Link>
+              <p class="card-text">
+                <textarea
+                  style={{width: "310px"}}
+                  rows='20' 
+                  type='text'
+                  id='Document_2'
+                  value={databaseText2.text}
+                  onChange={event => handleChange(event)}
+                >{databaseText2.text}</textarea>
+              </p>
+              <button onClick={saveChanges}>Save changes</button>
             </div>
           </div>
         </div>
@@ -114,8 +160,17 @@ export default function Home(props) {
           <div class="card" id='card3' style={{width: "342px"}}>
             <img src={img4} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <p class="card-text">{databaseText3.text}</p>
-              <Link to={{ pathname: "https://en.wikipedia.org/wiki/David_Hicks"}}>See full information</Link>
+              <p class="card-text">
+                <textarea
+                  style={{width: "310px"}} 
+                  rows='20'
+                  type='text'
+                  id='Document_3'
+                  value={databaseText3.text}
+                  onChange={event => handleChange(event)}
+                >{databaseText3.text}</textarea>
+              </p>
+              <button onClick={saveChanges}>Save changes</button>
             </div>
           </div>
         </div>
@@ -123,8 +178,17 @@ export default function Home(props) {
           <div class="card" id='card4' style={{width: "285px"}}>
             <img src={img5} class="card-img-top" alt="..."/>
             <div class="card-body">
-              <p class="card-text">{databaseText4.text}</p>
-              <Link to={{ pathname: "https://en.wikipedia.org/wiki/Billy_Baldwin_(decorator)"}}>See full information</Link>
+              <p class="card-text">
+              <textarea
+                style={{width: "250px"}} 
+                rows='20'
+                type='text'
+                id='Document_4'
+                value={databaseText4.text}
+                onChange={event => handleChange(event)}
+              >{databaseText4.text}</textarea>
+              </p>
+              <button onClick={saveChanges}>Save changes</button>
             </div>
           </div>
         </div>

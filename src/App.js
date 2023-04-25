@@ -14,6 +14,7 @@ import Communication from './components/Page/FreeLearning/Communication';
 import Furniture from './components/Page/FreeLearning/Furniture';
 import StylesColors from './components/Page/FreeLearning/StylesColors';
 import LearningOptions from './components/Page/LearningOptions';
+import AdminHome from './components/Admin/AdminHome';
 
 function App() {
   const [id, setId] = useState(null);
@@ -43,6 +44,7 @@ function App() {
           <Route path='/furniture' element={<Furniture />} /> 
           <Route path='/styles-colors' element={<StylesColors />} />
           <Route path='/learning-options/:data' element={<LearningOptions id={id} />} />
+          <Route path='/adminHome' element={<AdminHome />} />
         </Routes> 
       </div>
     </UserAuthContextProvider>
