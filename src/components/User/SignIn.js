@@ -3,9 +3,6 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import GoogleButton from 'react-google-button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/UserAuthContext';
-import { db } from '../../firebase';
-import { getDocs, collection, query, where } from "firebase/firestore";
-
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -19,20 +16,7 @@ export default function SignIn() {
     setError("");
     try {
       await signIn(email, password);
-
-      const q = query(collection(db, "Users"), where("email", "==", email), where("userType", "==", "Admin"));
-      const querySnapshot = await getDocs(q);
-      let textArray = [];
-    
-      querySnapshot.forEach((doc) => {
-        textArray.push({ id: doc.id, ...doc.data() });
-      });
-
-      if (textArray.length == 0) {
-        navigate("/home");
-      } else {
-        navigate("/adminHome");
-      }
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }

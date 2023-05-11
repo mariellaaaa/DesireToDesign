@@ -20,7 +20,6 @@ export function UserAuthContextProvider({ children }) {
     }
 
     function signIn(email, password) {
-        console.log(email)
         return signInWithEmailAndPassword(auth, email, password);
     }
 

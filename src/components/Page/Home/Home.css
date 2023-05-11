@@ -131,3 +131,44 @@ div.down-space {
 #learn-free {
     margin-top: 450px;
 }
+
+.home-image .btn-search {
+    position: absolute;
+    left: 1%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 20px;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+.home-image .btn-job {
+    position: absolute;
+    left: 1%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 20px;
+    padding: 15px 22px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 110px;
+  }
+
+.home-image .btn-job:hover {
+    background-color:  #431f4a;
+  }
+
+  .home-image .btn-search:hover {
+    background-color:  #431f4a;
+  }
+

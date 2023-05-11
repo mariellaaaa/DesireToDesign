@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import SignIn from './components/User/SignIn';
-import Reac, { useState } from 'react';
+import React, { useState } from 'react';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import Signup from './components/User/Signup';
 import ProtectedRoute from './components/Page/ProtectedRoute';
@@ -15,6 +15,9 @@ import Furniture from './components/Page/FreeLearning/Furniture';
 import StylesColors from './components/Page/FreeLearning/StylesColors';
 import LearningOptions from './components/Page/LearningOptions';
 import AdminHome from './components/Admin/AdminHome';
+import FindDesigners from './components/Page/DesignCareer/FindDesigners';
+import PostJob from './components/Page/DesignCareer/PostJob';
+import ViewPost from './components/Page/DesignCareer/ViewPost';
 
 function App() {
   const [id, setId] = useState(null);
@@ -44,7 +47,10 @@ function App() {
           <Route path='/furniture' element={<Furniture />} /> 
           <Route path='/styles-colors' element={<StylesColors />} />
           <Route path='/learning-options/:data' element={<LearningOptions id={id} />} />
-          <Route path='/adminHome' element={<AdminHome />} />
+          <Route path='/admin/home' element={<AdminHome />} />
+          <Route path='/find/designers' element={<FindDesigners />} />
+          <Route path='/post/job' element={<PostJob />} />
+          <Route path='/view/:id' element={<ViewPost />} />
         </Routes> 
       </div>
     </UserAuthContextProvider>

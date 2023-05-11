@@ -1,6 +1,5 @@
 import React from 'react';
 import { useUserAuth } from '../../context/UserAuthContext';
-import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignOut() {
@@ -11,6 +10,7 @@ export default function SignOut() {
         try {
             await logOut();
             navigate("/");
+            window.location.reload(true);
         } catch (err) {
             console.log(err.message)
         }

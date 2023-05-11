@@ -36,15 +36,19 @@ export default function AdminHome(props) {
       const docRef1 = doc(db, "HomePage", 'Document_1');
       const snapshot1 = await getDoc(docRef1);
       setDatabaseText1(snapshot1.data());
+      setText(databaseText1.text);
       const docRef2 = doc(db, "HomePage", 'Document_2');
       const snapshot2 = await getDoc(docRef2);
       setDatabaseText2(snapshot2.data());
+      setText(databaseText2.text);
       const docRef3 = doc(db, "HomePage", 'Document_3');
       const snapshot3 = await getDoc(docRef3);
       setDatabaseText3(snapshot3.data());
+      setText(databaseText3.text);
       const docRef4 = doc(db, "HomePage", 'Document_4');
       const snapshot4 = await getDoc(docRef4);
       setDatabaseText4(snapshot4.data());
+      setText(databaseText4.text);
     }
     gettingData()
   }, []);
@@ -83,6 +87,12 @@ export default function AdminHome(props) {
         <img src={img1} width="1600" height="424" className='image' />
         <div class="top-left">Now is the time to start!</div>
         <div class="text">Learn everything you need to turn your desire to design into your life's career</div>
+        <Link to='/find/designers'>
+          <button class="btn-search">Looking for a designer</button>
+        </Link>
+        <Link to='/post/job'>
+          <button class="btn-job">Post your design skills</button>
+        </Link>
       </div>
       <div class="card-group" id='learn-free'>
         <div class="card">

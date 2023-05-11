@@ -27,7 +27,6 @@ export default function Home(props) {
   const [databaseText2, setDatabaseText2] = useState([]);
   const [databaseText3, setDatabaseText3] = useState([]);
   const [databaseText4, setDatabaseText4] = useState([]);
-  const id = ['Document_1', 'Document_2', 'Document_3', 'Document_4']
 
   useEffect(() => {
     const gettingData = async () => {
@@ -44,10 +43,8 @@ export default function Home(props) {
       const snapshot4 = await getDoc(docRef4);
       setDatabaseText4(snapshot4.data());
     }
-
     gettingData()
   }, []);
-
 
   return (
     <div className='container'>
@@ -55,6 +52,12 @@ export default function Home(props) {
         <img src={img1} width="1600" height="424" className='image' />
         <div class="top-left">Now is the time to start!</div>
         <div class="text">Learn everything you need to turn your desire to design into your life's career</div>
+        <Link to='/find/designers'>
+          <button class="btn-search">Looking for a designer</button>
+        </Link>
+        <Link to='/post/job'>
+          <button class="btn-job">Post your design skills</button>
+        </Link>
       </div>
       <div class="card-group" id='learn-free'>
         <div class="card">
