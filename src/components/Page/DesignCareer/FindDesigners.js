@@ -25,17 +25,18 @@ export default function FindDesigners() {
     <div>
         {postFound.map((item) => {
                 return (
-                    <div key={item.id} class="card" style={{width: '18rem' }}>
-                        <img src={item.photo} class="card-img-top" alt="..." />
-                            <div class="card-body">
-                                <h5 class="card-title">{item.user}</h5>
-                                <p class="card-text">{item.title}</p>
-                                <Link to={`/view/${item.id}`}>
-                                    <button className='btn btn-primary'>
-                                        View
-                                    </button>
-                                </Link>
-                            </div>
+                    <div key={item.id} class="card" id="designers-card" style={{width: '20rem' }}>
+                        <div class="card-body">
+                            <h5 class="card-title">{item.name}</h5>
+                            <p class="card-text">Email: {item.user}</p>
+                            <p class="card-text">{item.title}</p>
+                            <p class="card-text">{item.price} Є</p>
+                            <Link to={`/view/${item.id}`}>
+                                <button className='btn btn-primary'>
+                                    View
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 )
             })}

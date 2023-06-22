@@ -18,41 +18,46 @@ import AdminHome from './components/Admin/AdminHome';
 import FindDesigners from './components/Page/DesignCareer/FindDesigners';
 import PostJob from './components/Page/DesignCareer/PostJob';
 import ViewPost from './components/Page/DesignCareer/ViewPost';
+import PrivateChat from './components/Page/Chat/PrivateChat';
+import { ChatContextProvider } from './context/ChatContext';
 
 function App() {
   const [id, setId] = useState(null);
 
   return (
     <UserAuthContextProvider>
-      <Navbar />
-      <div className='container'>
-        <Routes>
-          <Route 
-            path='/home' 
-            element={
-            <ProtectedRoute>
-              <Home
-                setId={setId}
-                id={id}
-              />
-            </ProtectedRoute>
-            } 
-          />
-          <Route exact path='/' element={<SignIn />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/signout' element={<SignOut />} />
-          <Route path='/user/:data' element={<UserData />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/communication' element={<Communication />} />
-          <Route path='/furniture' element={<Furniture />} /> 
-          <Route path='/styles-colors' element={<StylesColors />} />
-          <Route path='/learning-options/:data' element={<LearningOptions id={id} />} />
-          <Route path='/admin/home' element={<AdminHome />} />
-          <Route path='/find/designers' element={<FindDesigners />} />
-          <Route path='/post/job' element={<PostJob />} />
-          <Route path='/view/:id' element={<ViewPost />} />
-        </Routes> 
-      </div>
+      <ChatContextProvider>
+        <Navbar />
+        <div className='container'>
+          <Routes>
+            <Route 
+              path='/home' 
+              element={
+              <ProtectedRoute>
+                <Home
+                  setId={setId}
+                  id={id}
+                />
+              </ProtectedRoute>
+              } 
+            />
+            <Route exact path='/' element={<SignIn />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/signout' element={<SignOut />} />
+            <Route path='/user/:data' element={<UserData />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/communication' element={<Communication />} />
+            <Route path='/furniture' element={<Furniture />} /> 
+            <Route path='/styles-colors' element={<StylesColors />} />
+            <Route path='/learning-options/:data' element={<LearningOptions id={id} />} />
+            <Route path='/admin/home' element={<AdminHome />} />
+            <Route path='/find/designers' element={<FindDesigners />} />
+            <Route path='/post/job' element={<PostJob />} />
+            <Route path='/view/:id' element={<ViewPost />} />
+            <Route path='/private-chat' element={<PrivateChat />} />
+          </Routes> 
+        </div>
+      </ChatContextProvider>
     </UserAuthContextProvider>
   );
 }

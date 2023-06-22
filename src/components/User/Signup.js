@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Alert, Button, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/UserAuthContext';
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { db } from '../../firebase';
-
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -14,7 +13,7 @@ export default function Signup() {
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
 
-  const userList = collection(db, "Users");
+  const { user } = useUserAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,17 +22,21 @@ export default function Signup() {
     }
     setError("");
     try {
-      await signUp(email, password);
+      const signup = await signUp(email, password);
+      await setDoc(doc(db, "Users", signup.user.uid), {
+        email: email, 
+        password: password,
+        createdAt: serverTimestamp(),
+        userType: 'User',
+        uid: signup.user.uid,
+      });
+
+      await setDoc(doc(db, "UserChats", signup.user.uid), {});
+
       navigate("/");
     } catch (err) {
       setError(err.message);
     }
-    await addDoc(userList, {
-      email: email, 
-      password: password,
-      createdAt: serverTimestamp(),
-      userType: 'User',
-    });
   };
 
   return (

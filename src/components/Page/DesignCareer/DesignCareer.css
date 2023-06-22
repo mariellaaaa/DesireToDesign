@@ -7,3 +7,11 @@
     margin-top: 20px;
   }
 
+#designers-card {
+    display: inline-block;
+}
+
+#designer {
+    margin-top: 70px;
+}
+

@@ -2,35 +2,37 @@ import React, { useState } from 'react';
 import './DesignCareer.css';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db, auth } from '../../../firebase';
+import { useUserAuth } from '../../../context/UserAuthContext';
 
 export default function PostJob() {
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
-    const [photo, setPhoto] = useState("");
     const [text, setText] = useState("");
+    const [name, setName] = useState("");
     const [success, setSuccess] = useState(false);
     const [displayMessage, setDisplayMessage] = useState("");
 
     const pasteRef = collection(db, "JobPosts");
+    let { user } = useUserAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (text === "" || title === "") return;
+        if (text === "" || title === "" || name === "") return;
 
         await addDoc(pasteRef, {
             title: title,
             price: price,
-            photo: photo, 
             text: text,
             createdAt: serverTimestamp(),
-            user: auth.currentUser.displayName,
+            name: name,
+            user: user.email
         });
 
         setText("");
         setTitle("");
-        setPhoto("");
         setPrice("");
+        setName("");
         setDisplayMessage(`Your Paste has successfully created!`);
         setSuccess(true);
     };
@@ -39,6 +41,15 @@ export default function PostJob() {
     <div>
         <div>
             <p>Post my interior design's services</p>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Designer's name</span>
+            <input 
+                type="text" 
+                class="form-control" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Post Title</span>
@@ -58,16 +69,6 @@ export default function PostJob() {
                 onChange={(e) => setPrice(e.target.value)} 
             />
             <span class="input-group-text">€</span>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupFile01">Upload</label>
-            <input 
-                type="file" 
-                class="form-control" 
-                id="inputGroupFile01" 
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
-            />
         </div>
         <div class="input-group">
             <span class="input-group-text">Add more details about your skills</span>

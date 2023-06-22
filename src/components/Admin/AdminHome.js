@@ -10,9 +10,6 @@ import img7 from '../images/photo2.jpg';
 import img8 from '../images/photo3.jpg';
 import img9 from '../images/photo4.jpg';
 import img10 from '../images/photo5.jpg';
-import img11 from '../images/furniture.jpg';
-import img12 from '../images/styles-colors.jpg';
-import img13 from '../images/communication.jpg';
 import { Link } from 'react-router-dom';
 import { addDoc, collection, doc, serverTimestamp, updateDoc, getDoc } from "firebase/firestore";
 import { db } from '../../firebase';
@@ -96,7 +93,7 @@ export default function AdminHome(props) {
       </div>
       <div class="card-group" id='learn-free'>
         <div class="card">
-          <img src={img11} class="card-img-top" alt="..." />
+          <img src="https://images-prod.anothermag.com/900/azure/another-prod/350/4/354967.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">The history of furniture</h5>
             <p class="card-text">Learn the origin of furniture and its importance in interior design.</p>
@@ -106,7 +103,7 @@ export default function AdminHome(props) {
           </div>
         </div>
         <div class="card">
-          <img src={img12} class="card-img-top" alt="..." />
+          <img src="https://www.kilz.com/blog/wp-content/uploads//2020/04/Calming-and-Energizing-Paint-Colors-_header_trends_2020.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Styles and colors</h5>
             <p class="card-text">Discover the meaning of each color and its use in defining style.</p>
@@ -116,7 +113,7 @@ export default function AdminHome(props) {
           </div>
         </div>
         <div class="card">
-          <img src={img13} class="card-img-top" alt="..." />
+          <img src="https://resources.workable.com/wp-content/uploads/2020/10/Effective-workplace-communication-01.png" style={{height: "282px"}} class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Communication techniques</h5>
             <p class="card-text">Understand the customer's preferences from the first conversation.</p>

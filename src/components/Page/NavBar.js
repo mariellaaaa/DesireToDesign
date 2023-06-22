@@ -32,13 +32,16 @@ export default function Navbar() {
         </Link>
         <ul>
           {user && (
+            <CustomLink to="/private-chat">Chat</CustomLink>
+          )}
+          {user && (
+            <CustomLink to={`/user/${user.email}`}>{user.email}</CustomLink>
+          )}
+          {user && (
             <CustomLink to="/signout">Sign Out</CustomLink>
           )}
           {!user && (
             <CustomLink to="/signup">Sign Up</CustomLink>
-          )}
-          {user && (
-            <CustomLink to={`/user/${user.email}`}>{user.email}</CustomLink>
           )}
           {(admin && user) && (
             <CustomLink to="/admin/home">Admin Mode</CustomLink>
